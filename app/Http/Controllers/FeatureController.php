@@ -26,7 +26,7 @@ class FeatureController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Feature/Create');
     }
 
     /**
@@ -42,7 +42,9 @@ class FeatureController extends Controller
      */
     public function show(Feature $feature)
     {
-        //
+        return Inertia::render('Feature/Show', [
+            'feature' => $feature
+        ]);
     }
 
     /**

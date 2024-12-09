@@ -34,7 +34,15 @@ class FeatureController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => ['required', 'string'],
+            'description' => ['nullable', 'string'],
+            'user_id' => ['required']
+        ]);
+
+        Feature::create($data);
+
+        return to_route('feature.index')->with('success', 'Feature created successfully.');
     }
 
     /**
@@ -68,6 +76,7 @@ class FeatureController extends Controller
      */
     public function destroy(Feature $feature)
     {
-        //
+        $feature->delete();
+        return to_route('feature.index')->with('success', "Feature deleted successfully.");
     }
 }
